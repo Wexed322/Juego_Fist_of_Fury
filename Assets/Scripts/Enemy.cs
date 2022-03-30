@@ -5,6 +5,8 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] float velocidad;
+
+    [SerializeField] Vector3 inicialPos;
     void Start()
     {
         StartCoroutine(muerte());
@@ -18,7 +20,10 @@ public class Enemy : MonoBehaviour
     IEnumerator muerte() 
     {
         yield return new WaitForSecondsRealtime(10);
-        Destroy(this.gameObject);
+        if (this.gameObject != null)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
 

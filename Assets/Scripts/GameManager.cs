@@ -5,12 +5,21 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance_;
-    private int score;
+
+    public delegate void PlayerKill();
+    public static PlayerKill onPlayerKill;
+
+    public int score;
+
+    private void Start()
+    {
+        onPlayerKill = kill;
+    }
     private void Awake()
     {
-        if (GameManager.instance_ == null)
+        if (instance_ == null)
         {
-            GameManager.instance_ = this;
+            instance_ = this;
             DontDestroyOnLoad(gameObject);
         }
         else 
@@ -19,12 +28,9 @@ public class GameManager : MonoBehaviour
         }
         
     }
-    void Start()
+
+    public void kill() 
     {
-        
-    }
-    void Update()
-    {
-        
+        score++;
     }
 }

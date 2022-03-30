@@ -6,10 +6,15 @@ public class EnemyManager : MonoBehaviour
 {
     [Header("EnemyController")]
     [SerializeField] List<GameObject> enemies;
-    [SerializeField] float coolDownSpawn;
+
+    [SerializeField] int coolDownSpawnMin;
+    [SerializeField] int coolDownSpawnMax;
+    [SerializeField] int coolDownSpawn;
+
     [SerializeField] bool boolSpawn;
     void Start()
     {
+        coolDownSpawn = Random.Range(coolDownSpawnMin, coolDownSpawnMax);
         boolSpawn = false;
     }
 
@@ -24,10 +29,11 @@ public class EnemyManager : MonoBehaviour
         {
             boolSpawn = true;
             yield return new WaitForSecondsRealtime(coolDownSpawn);
-            boolSpawn = false;
+
+            coolDownSpawn = Random.Range(coolDownSpawnMin, coolDownSpawnMax);
             int indiceE = Random.Range(0, enemies.Count);
-            Debug.Log(indiceE);
             Instantiate(enemies[indiceE], enemies[indiceE].transform.position, enemies[indiceE].transform.rotation);
+            boolSpawn = false;
         }
     }
 }
