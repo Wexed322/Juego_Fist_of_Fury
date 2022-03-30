@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance_;
+    private int score;
     private void Awake()
     {
         if (GameManager.instance_ == null)
@@ -22,8 +23,6 @@ public class GameManager : MonoBehaviour
     {
         
     }
-
-    // Update is called once per frame
     void Update()
     {
         
