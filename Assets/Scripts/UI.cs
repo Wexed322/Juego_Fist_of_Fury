@@ -5,25 +5,27 @@ using TMPro;
 using UnityEngine.UI;
 public class UI : MonoBehaviour
 {
-    public static UI instanceUI;
-    [SerializeField] TextMeshProUGUI direccion;
-    [SerializeField] TextMeshProUGUI scoreText;
+    public static UI instance;
+    public TextMeshProUGUI direccion;
+    public TextMeshProUGUI scoreText;
     void Start()
     {
-        instanceUI = this;
-        GameManager.onPlayerKill += updateScore;
+        instance = this;
+        KillEnemyEvent.eventoMuerteEnemy += updateScore;
+
+
+        //GameManager.onPlayerKill = debugDelegateWtf;//DELEGATE CON PARAMETROS
     }
 
-    void Update()
-    {
-        
-    }
-    public void PrintName(Button a)
-    {
-        direccion.text = a.gameObject.name.ToString();
-    }
     public void updateScore() 
     {
+        GameManager.instance_.score++;
         scoreText.text = GameManager.instance_.score.ToString() + " Kills";
     }
+
+
+    /*public void debugDelegateWtf(int a, int b, string c)//DELEGATE CON PARAMETROS, puede ser devolver void u otra cosa
+    {
+        Debug.Log("sd");
+    }*/
 }

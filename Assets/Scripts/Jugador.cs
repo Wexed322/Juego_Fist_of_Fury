@@ -5,27 +5,30 @@ using UnityEngine;
 using UnityEngine.UI;
 public class Jugador : MonoBehaviour
 {
-    [SerializeField] List<Button> botones;
-    [SerializeField] float velocidadRot;
+    public ButtonController actualButton;
         
     void Start()
     {
-        botones[0].onClick.AddListener(() => RotationCharacter(new Vector3(0, 0, 0)));
-        botones[1].onClick.AddListener(() => RotationCharacter(new Vector3(0, 180, 0)));
-        botones[2].onClick.AddListener(() => RotationCharacter(new Vector3(0, 0, 90)));
-        botones[3].onClick.AddListener(() => RotationCharacter(new Vector3(0, 0, -90)));
+
     }
-    public void RotationCharacter(Vector3 to) 
+    private void Update()
     {
-        transform.rotation = Quaternion.Euler(to);
+        if (actualButton != null) 
+        {
+            this.gameObject.transform.rotation = Quaternion.Euler(actualButton.rotationForButton);
+        }
+        else 
+        {
+            this.gameObject.transform.rotation = Quaternion.Euler(0,0,0);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("enemy"))
         {
+            KillEnemyEvent.eventoMuerteEnemy?.Invoke();
             Destroy(collision.gameObject);
-            GameManager.onPlayerKill?.Invoke();
         }
     }
 
