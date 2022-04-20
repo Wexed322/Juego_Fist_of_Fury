@@ -24,7 +24,7 @@ public class ButtonController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
     {
         scriptReference.AnimationBehaviour(direction, true);
 
-        scriptReference.actualButton = this;
+        //scriptReference.actualButton = this;
         UI.instance.direccion.text = botonActual.gameObject.name;
     }
 
@@ -32,7 +32,7 @@ public class ButtonController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
     {
         scriptReference.AnimationBehaviour(direction, false);
 
-        scriptReference.actualButton = null;
+        //scriptReference.actualButton = null;
         UI.instance.direccion.text = "idle";
     }
 }

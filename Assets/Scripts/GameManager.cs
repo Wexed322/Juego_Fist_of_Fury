@@ -16,8 +16,6 @@ public class GameManager : MonoBehaviour
     /*public delegate void PlayerKill(int a, int b, string eaaaa);//DELEGATE CON PARAMETROS
     public static PlayerKill onPlayerKill;//DELEGATE CON PARAMETROS*/
 
-
-
     private void Start()
     {
 

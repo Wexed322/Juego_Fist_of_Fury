@@ -23,6 +23,11 @@ public class UI : MonoBehaviour
         scoreText.text = GameManager.instance_.score.ToString() + " Kills";
     }
 
+    public void updateDirection(string text_)
+    {
+        direccion.text = text_;
+    }
+
 
     /*public void debugDelegateWtf(int a, int b, string c)//DELEGATE CON PARAMETROS, puede ser devolver void u otra cosa
     {
